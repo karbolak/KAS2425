@@ -107,7 +107,6 @@
 				<fact name="omission-or-violation-of-duty">yes</fact>
 			</then>
 		</option>
-		<option>
 			<description>No</description>
 			<then>
 				<fact name="omission-or-violation-of-duty">no</fact>
@@ -180,5 +179,6 @@
 	</question>
 
 	
+
 
 </knowledge>
