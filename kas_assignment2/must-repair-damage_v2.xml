@@ -1,0 +1,190 @@
+<?xml version="1.0"?>
+<knowledge>
+    <title>Repairing Damage from a Tortious Act</title>
+    <description>This program determines whether a person must repair damages caused by a tortious act based on the circumstances outlined in the flowchart.</description>
+
+    <goal name="must-repair-damage">
+        <description>Does the person have to repair the damage caused by a tortious act?</description>
+        <answer value="yes"><![CDATA[The person <em>must</em> repair the damage caused by the tortious act.]]></answer>
+        <answer><![CDATA[The person <em>must not</em> repair the damage caused by the tortious act.]]></answer>
+    </goal>
+
+    <question>
+        <description>Did the person commit a tortious act?</description>
+        <option>
+            <description>Yes</description>
+            <then>
+                <fact name="tortious-act">yes</fact>
+            </then>
+        </option>
+        <option>
+            <description>No</description>
+            <then>
+                <fact name="tortious-act">no</fact>
+            </then>
+        </option>
+    </question>
+
+    <rule>
+        <description>No tortious act was committed.</description>
+        <if>
+            <fact name="tortious-act">no</fact>
+        </if>
+        <then>
+            <fact name="must-repair-damage">no</fact>
+        </then>
+    </rule>
+
+    <question>
+        <description>Was the act a violation of one of these three: someone else's right, duty imposed by law, or proper social conduct?</description>
+        <option>
+            <description>Yes</description>
+            <then>
+                <fact name="violation">yes</fact>
+            </then>
+        </option>
+        <option>
+            <description>No</description>
+            <then>
+                <fact name="violation">no</fact>
+            </then>
+        </option>
+    </question>
+
+    <rule>
+        <description>The act did not violate someone’s right, duty, or proper social conduct.</description>
+        <if>
+            <fact name="violation">no</fact>
+        </if>
+        <then>
+            <fact name="must-repair-damage">no</fact>
+        </then>
+    </rule>
+
+    <question>
+        <description>Was there a justification for committing this act? (life or death situation, etc.)</description>
+        <option>
+            <description>Yes</description>
+            <then>
+                <fact name="justification">yes</fact>
+            </then>
+        </option>
+        <option>
+            <description>No</description>
+            <then>
+                <fact name="justification">no</fact>
+            </then>
+        </option>
+    </question>
+
+    <rule>
+        <description>The act was justified.</description>
+        <if>
+            <fact name="justification">yes</fact>
+        </if>
+        <then>
+            <fact name="must-repair-damage">no</fact>
+        </then>
+    </rule>
+
+    <question>
+        <description>Was the act a result of their fault or are they accountable by law or accepted principles?</description>
+        <option>
+            <description>Yes</description>
+            <then>
+                <fact name="accountable">yes</fact>
+            </then>
+        </option>
+        <option>
+            <description>No</description>
+            <then>
+                <fact name="accountable">no</fact>
+            </then>
+        </option>
+    </question>
+
+    <rule>
+        <description>They are not accountable for the act.</description>
+        <if>
+            <fact name="accountable">no</fact>
+        </if>
+        <then>
+            <fact name="must-repair-damage">no</fact>
+        </then>
+    </rule>
+
+    <question>
+        <description>Is the person older than 14?</description>
+        <option>
+            <description>Yes</description>
+            <then>
+                <fact name="old-enough">yes</fact>
+            </then>
+        </option>
+        <option>
+            <description>No</description>
+            <then>
+                <fact name="old-enough">no</fact>
+            </then>
+        </option>
+    </question>
+
+    <rule>
+        <description>This is a minor.</description>
+        <if>
+            <fact name="old-enough">no</fact>
+        </if>
+        <then>
+            <fact name="must-repair-damage">no</fact>
+        </then>
+    </rule>
+
+    <question>
+        <description>Is the person mentally or physically disabled?</description>
+        <option>
+            <description>Yes</description>
+            <then>
+                <fact name="disabled">yes</fact>
+            </then>
+        </option>
+        <option>
+            <description>No</description>
+            <then>
+                <fact name="disabled">no</fact>
+            </then>
+        </option>
+    </question>
+
+    <question>
+        <description>Was the violated rule or standard of behavior meant to protect against the type of damage that occurred?</description>
+        <option>
+            <description>Yes</description>
+            <then>
+                <fact name="protection">yes</fact>
+            </then>
+        </option>
+        <option>
+            <description>No</description>
+            <then>
+                <fact name="protection">no</fact>
+            </then>
+        </option>
+    </question>
+
+    <rule>
+        <description>Person must repair the damage.</description>
+        <if>
+            <and>
+                <fact name="tortious-act">yes</fact>
+                <fact name="violation">yes</fact>
+                <fact name="justification">no</fact>
+                <fact name="accountable">yes</fact>
+                <fact name="old-enough">yes</fact>
+                <fact name="protection">yes</fact>
+            </and>
+        </if>
+        <then>
+            <fact name="must-repair-damage">yes</fact>
+        </then>
+    </rule>
+</knowledge>

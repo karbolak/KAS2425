@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <knowledge>
 	<title>Should you be punished?</title>
-	<description>This is a programme that verifies whether the person commited a tortious act and if so, whether they have to pay for it.</description>
+	<description>This is a programe that verifies whether the person commited a tortious act and if so, whether they have to pay for it.</description>
 
 	<goal name="must-repair-damage">
 		<description>Does the person have to repair the damage caused by a tortious act?</description>
@@ -69,7 +69,7 @@
 	</question>
 
 	<rule>
-		<description>This is a tortious act?</description>
+		<description>This is a tortious act.</description>
 		<if>
 			<or>
 				<fact name="violation-of-someone-else's-rights">yes</fact>
@@ -130,7 +130,7 @@
 	</question>
 
 	<question>
-		<description>Was there intend to offer protection against damage/ injury?</description>
+		<description>Was there intent to offer protection against damage/injury?</description>
 		<option>
 			<description>Yes</description>
 			<then>
